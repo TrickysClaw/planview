@@ -7,6 +7,8 @@ import { globalLimiter } from "./middleware/rateLimiter.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 import healthRoutes from "./routes/health.js";
 import planningRoutes from "./routes/planning.js";
+import authRoutes from "./routes/auth.js";
+import dashboardRoutes from "./routes/dashboard.js";
 
 const app = express();
 
@@ -46,6 +48,8 @@ app.use((req, _res, next) => {
 
 // ─── ROUTES ───────────────────────────────────────────────────
 app.use("/api", healthRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/dashboard", dashboardRoutes);
 app.use("/api/v1", planningRoutes);
 
 // ─── ERROR HANDLING ───────────────────────────────────────────
